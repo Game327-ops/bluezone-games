@@ -7,372 +7,84 @@
 <title>BLUEZONE GAMES</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;background:#050b18;color:white;font-family:Arial}
-header{text-align:center;padding:28px 10px;background:linear-gradient(130deg,#071a39,#0754a5);border-bottom:2px solid #168bff}
-header h1{color:#65baff;font-size:30px;text-shadow:0 0 15px #168bff}
-header p{color:#c5dcff}
-nav{padding:15px;text-align:center;background:#0c1930}
-nav a{color:#65baff;margin:10px;text-decoration:none}
-main{max-width:950px;margin:auto;padding:18px}
-.hero{padding:22px;background:#102341;border:1px solid #168bff;border-radius:15px;text-align:center;margin-bottom:20px}
-h2{color:#59b5ff}
-input{width:100%;padding:14px;border-radius:10px;background:#101d33;color:white;border:1px solid #168bff;margin:12px 0}
-.games{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.card{background:#101d33;border:1px solid #174b83;border-radius:14px;text-align:center;padding:17px 8px}
-.card .emoji{font-size:39px}
-.card h3{color:#82c8ff}
-.card p{font-size:13px;color:#bdcce0}
-button{background:#087cf0;color:white;border:0;border-radius:9px;padding:12px 17px;margin:4px;font-weight:bold}
-button:active{transform:scale(.96)}
-#game{display:none;background:#101d33;border:1px solid #168bff;border-radius:15px;padding:17px;margin-top:22px;text-align:center}
-#gameContent{padding:10px}
-#result{color:#75c4ff;min-height:25px}
-.tile{padding:13px;background:#123b68;border-radius:9px;font-size:24px}
-footer{text-align:center;padding:30px;color:#8ba8ce}
-@media(min-width:650px){.games{grid-template-columns:repeat(3,1fr)}}
+body{margin:0;background:#070d1b;color:white;font-family:Arial,sans-serif}
+header{text-align:center;padding:35px 15px;background:#111e36;border-bottom:3px solid #1685ff}
+h1{color:#1685ff;font-size:32px;margin:5px}
+header p{color:#b8c7df}
+nav{text-align:center;padding:18px;color:#1685ff}
+main{max-width:1100px;margin:auto;padding:18px}
+h2{color:#1685ff}
+input{width:100%;padding:16px;border-radius:12px;border:1px solid #1685ff;background:#111e36;color:white;font-size:16px;margin:10px 0 25px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:16px}
+.game{background:#111e36;border:1px solid #254b7b;border-radius:15px;padding:18px;text-align:center;text-decoration:none;color:white;transition:.2s}
+.game:hover{transform:translateY(-4px);border-color:#1685ff}
+.emoji{font-size:48px;margin:8px}
+.game h3{margin:12px 0}
+.game p{color:#bdcbe0;font-size:14px}
+button{background:#087cf0;color:white;border:0;padding:12px 22px;border-radius:10px;font-size:16px}
+footer{text-align:center;color:#8798b4;padding:35px}
 </style>
 </head>
 <body>
 <header>
-<h1>🎮 BLUEZONE GAMES</h1>
-<p>YOUR WORLD. YOUR GAMES.</p>
+<h1>BLUEZONE GAMES 🎮</h1>
+<p>YOUR WORLD OF GAMES</p>
 </header>
-<nav>
-<a href="#home">الرئيسية</a>
-<a href="#library">الألعاب</a>
-<a href="#game">العب الآن</a>
-</nav>
-<main id="home">
-<div class="hero">
-<h2>Welcome to BLUEZONE</h2>
-<p>عالمك للألعاب والتحديات 💙</p>
-</div>
-<h2 id="library">🔥 مكتبة الألعاب</h2>
-<input id="search" placeholder="ابحث عن لعبة..." oninput="searchGames()">
-<div class="games" id="games">
-<div class="card" data-name="السلم والثعبان">
-<div class="emoji">🐍</div><h3>السلم والثعبان</h3>
-<p>ارمِ النرد وحاول الوصول للنهاية.</p>
-<button onclick="play('ladder')">العب الآن</button></div>
-<div class="card" data-name="حرب الغواصات">
-<div class="emoji">🚢</div><h3>حرب الغواصات</h3>
-<p>لعبة تخمين مواقع على شبكة.</p>
-<button onclick="play('ships')">العب الآن</button></div>
-<div class="card" data-name="فوتبول كرة القدم">
-<div class="emoji">⚽</div><h3>Football</h3>
-<p>تحدي ركلات الجزاء.</p>
-<button onclick="play('football')">العب الآن</button></div>
-<div class="card" data-name="دومينو">
-<div class="emoji">🁣</div><h3>Domino</h3>
-<p>طابق الأرقام.</p>
-<button onclick="play('domino')">العب الآن</button></div>
-<div class="card" data-name="puzzle">
-<div class="emoji">🧩</div><h3>Puzzle</h3>
-<p>رتب الأرقام بالترتيب.</p>
-<button onclick="play('puzzle')">العب الآن</button></div>
-<div class="card" data-name="ورق cards">
-<div class="emoji">🃏</div><h3>ورق عادي</h3>
-<p>اسحب ورقة وقارنها بالكمبيوتر.</p>
-<button onclick="play('cards')">العب الآن</button></div>
-<div class="card" data-name="ludo">
-<div class="emoji">🎲</div><h3>Ludo</h3>
-<p>ارمِ النرد وتقدم على المسار.</p>
-<button onclick="play('ludo')">العب الآن</button></div>
-<div class="card" data-name="bus parking out">
-<div class="emoji">🚌</div><h3>Bus Parking Out</h3>
-<p>حل لغز الحافلة.</p>
-<button onclick="play('bus')">العب الآن</button></div>
-<div class="card" data-name="pacman">
-<div class="emoji">👾</div><h3>PAC-MAN</h3>
-<p>اجمع النقاط في المتاهة.</p>
-<button onclick="play('pacman')">العب الآن</button></div>
-<div class="card" data-name="solitaire">
-<div class="emoji">♠️</div><h3>Solitaire</h3>
-<p>رتب الأوراق.</p>
-<button onclick="play('solitaire')">العب الآن</button></div>
-</div>
+<nav>الرئيسية　 |　 جميع الألعاب　 |　 ألعاب مجانية</nav>
+<main>
+<h2>🔥 اكتشف الألعاب</h2>
+<input id="search" placeholder="ابحث عن لعبة..." oninput="filterGames()">
+<div class="grid" id="games">
 
-<section id="game">
-<h2 id="gameTitle"></h2>
-<div id="gameContent"></div>
-<p id="result"></p>
-<button onclick="closeGame()">إغلاق اللعبة</button>
-</section>
+<a class="game" href="https://poki.com/en/g/drive-mad" target="_blank" rel="noopener">
+<div class="emoji">🚗</div><h3>Drive Mad</h3><p>قيادة وتحديات سيارات</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/smash-karts" target="_blank" rel="noopener">
+<div class="emoji">🏎️</div><h3>Smash Karts</h3><p>سباق سيارات متعدد اللاعبين</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/crazy-cars" target="_blank" rel="noopener">
+<div class="emoji">🏁</div><h3>Crazy Cars</h3><p>عالم سيارات ومغامرات</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/drift-boss" target="_blank" rel="noopener">
+<div class="emoji">🏎️</div><h3>Drift Boss</h3><p>تحدي الانجراف</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/subway-surfers" target="_blank" rel="noopener">
+<div class="emoji">🏃</div><h3>Subway Surfers</h3><p>اركض وتجنب العقبات</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/master-chess" target="_blank" rel="noopener">
+<div class="emoji">♟️</div><h3>Master Chess</h3><p>لعبة الشطرنج</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/monkey-mart" target="_blank" rel="noopener">
+<div class="emoji">🐵</div><h3>Monkey Mart</h3><p>إدارة متجر ممتع</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/blocky-blast-puzzle" target="_blank" rel="noopener">
+<div class="emoji">🧩</div><h3>Blocky Blast Puzzle</h3><p>ألغاز وتركيب</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/g/level-devil" target="_blank" rel="noopener">
+<div class="emoji">😈</div><h3>Level Devil</h3><p>مراحل وتحديات</p><button>العب الآن</button>
+</a>
+
+<a class="game" href="https://poki.com/en/categories" target="_blank" rel="noopener">
+<div class="emoji">🎮</div><h3>المزيد من الألعاب</h3><p>اكتشف ألعاباً أكثر</p><button>العب الآن</button>
+</a>
+
+</div>
 </main>
-<footer>BLUEZONE GAMES © 2026<br>Made with 💙</footer>
-
+<footer>BLUEZONE GAMES © 2026</footer>
 <script>
-const $=id=>document.getElementById(id);
-let data={};
-function show(title,html){
- $('game').style.display='block';
- $('gameTitle').textContent=title;
- $('gameContent').innerHTML=html;
- $('result').textContent='';
- $('game').scrollIntoView({behavior:'smooth'});
-}
-function closeGame(){
- $('game').style.display='none';
-}
-function searchGames(){
- let q=$('search').value.toLowerCase();
- document.querySelectorAll('.card').forEach(c=>{
- c.style.display=c.dataset.name.toLowerCase().includes(q)?'block':'none';
- });
-}
-function play(type){
- if(type==='ladder')ladder();
- if(type==='ships')ships();
- if(type==='football')football();
- if(type==='domino')domino();
- if(type==='puzzle')puzzle();
- if(type==='cards')cards();
- if(type==='ludo')ludo();
- if(type==='bus')bus();
- if(type==='pacman')pacman();
- if(type==='solitaire')solitaire();
-}
-
-// Snakes and ladders
-function ladder(){
- data.pos=0;
- show('🐍 السلم والثعبان',`
- <h3 id="pos">مكانك: 0 / 100</h3>
- <button onclick="rollLadder()">🎲 ارمي النرد</button>
- <p>حاول الوصول إلى 100!</p>`);
- window.rollLadder=function(){
- let n=1+Math.floor(Math.random()*6);
- data.pos=Math.min(100,data.pos+n);
- let jumps={4:14,9:31,17:7,20:38,28:84,40:59,51:67,54:34,62:19,63:81,64:60,71:91,87:24,93:73,95:75,99:78};
- if(jumps[data.pos])data.pos=jumps[data.pos];
- $('pos').textContent='مكانك: '+data.pos+' / 100';
- $('result').textContent='🎲 حصلت على '+n;
- if(data.pos===100)$('result').textContent='🏆 فزت!';
- };
-}
-
-// Abstract grid guessing game
-function ships(){
- data.targets=new Set();
- while(data.targets.size<5)data.targets.add(Math.floor(Math.random()*25));
- data.hits=new Set();
- show('🚢 لعبة شبكة الغواصات',`
- <p>اختر الخانات واكتشف المواقع الخمسة المخفية.</p>
- <div id="board" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px"></div>`);
- for(let i=0;i<25;i++){
- let b=document.createElement('button');
- b.textContent='🌊';b.style.padding='13px 3px';
- b.onclick=()=>{
- if(data.hits.has(i))return;
- data.hits.add(i);
- if(data.targets.has(i)){b.textContent='🚢';b.style.background='#087c50';}
- else b.textContent='❌';
- if([...data.targets].every(x=>data.hits.has(x)))
- $('result').textContent='🏆 اكتشفت كل المواقع!';
- };
- $('board').appendChild(b);
- }
-}
-
-// Football penalty challenge
-function football(){
- data.score=0;data.shots=0;
- show('⚽ ركلات الجزاء',`
- <div style="font-size:65px">🥅</div>
- <p>اختر جهة التسديد</p>
- <button onclick="shoot(0)">⬅️ يسار</button>
- <button onclick="shoot(1)">⬆️ وسط</button>
- <button onclick="shoot(2)">➡️ يمين</button>
- <h3 id="footballScore">الأهداف: 0 / 5</h3>`);
- window.shoot=function(n){
- if(data.shots>=5)return;
- let keeper=Math.floor(Math.random()*3);
- if(n!==keeper)data.score++;
- data.shots++;
- $('result').textContent=n===keeper?'🧤 الحارس صد الكرة!':'⚽ هدف!';
- $('footballScore').textContent='الأهداف: '+data.score+' / 5';
- if(data.shots===5)$('result').textContent+=' انتهت المباراة!';
- };
-}
-
-// Domino
-function domino(){
- data.hand=Array.from({length:7},()=>[Math.floor(Math.random()*7),Math.floor(Math.random()*7)]);
- data.last=null;
- show('🁣 دومينو',`
- <p>اختر قطعة لتلعبها. طابق رقم أحد الطرفين.</p>
- <div id="dominoHand"></div>
- <h3 id="dominoLine">ابدأ باختيار قطعة</h3>
- <button onclick="domino()">لعبة جديدة</button>`);
- drawDomino();
-}
-function drawDomino(){
- let hand=$('dominoHand');hand.innerHTML='';
- data.hand.forEach((d,i)=>{
- let b=document.createElement('button');
- b.textContent=d.join(' | ');
- b.onclick=()=>{
- if(data.last!==null&&d[0]!==data.last&&d[1]!==data.last){
- $('result').textContent='هذه القطعة لا تطابق الطرف الحالي';return;
- }
- data.last=d[1]===data.last?d[0]:d[1];
- if(data.last===null)data.last=d[1];
- data.hand.splice(i,1);
- $('dominoLine').textContent='آخر رقم: '+data.last;
- if(data.hand.length===0)$('result').textContent='🏆 فزت!';
- else $('result').textContent='أحسنت! بقي '+data.hand.length+' قطع';
- drawDomino();
- };
- hand.appendChild(b);
- });
-}
-
-// Sliding number puzzle
-function puzzle(){
- data.tiles=[1,2,3,4,5,6,7,8,0];
- for(let i=0;i<40;i++){
- let a=Math.floor(Math.random()*9),b=Math.floor(Math.random()*9);
- [data.tiles[a],data.tiles[b]]=[data.tiles[b],data.tiles[a]];
- }
- show('🧩 Puzzle',`
- <p>رتب الأرقام من 1 إلى 8 واترك الفراغ أخيراً.</p>
- <div id="puzzleBoard" style="display:grid;grid-template-columns:repeat(3,70px);gap:6px;justify-content:center"></div>
- <button onclick="puzzle()">إعادة اللعب</button>`);
- drawPuzzle();
-}
-function drawPuzzle(){
- let board=$('puzzleBoard');board.innerHTML='';
- data.tiles.forEach((n,i)=>{
- let b=document.createElement('button');
- b.style.height='65px';b.style.fontSize='22px';
- b.textContent=n||'';
- b.onclick=()=>{
- let z=data.tiles.indexOf(0);
- if(Math.abs(Math.floor(i/3)-Math.floor(z/3))+Math.abs(i%3-z%3)!==1)return;
- [data.tiles[i],data.tiles[z]]=[data.tiles[z],data.tiles[i]];
- drawPuzzle();
- if(data.tiles.join(',')==='1,2,3,4,5,6,7,8,0')
- $('result').textContent='🏆 أحسنت! حللت اللغز!';
- };
- board.appendChild(b);
- });
-}
-
-// Playing cards
-function cards(){
- data.deck=Array.from({length:52},(_,i)=>i);
- data.deck.sort(()=>Math.random()-.5);
- data.round=0;data.wins=0;
- show('🃏 ورق عادي',`
- <p>اسحب ورقة وقارنها بورقة الكمبيوتر. الأعلى يفوز!</p>
- <button onclick="drawCard()">اسحب ورقة</button>
- <h3 id="cardRound">الجولات: 0 / 5</h3>`);
- window.drawCard=function(){
- if(data.round>=5)return;
- let a=data.deck.pop()%13+1,b=data.deck.pop()%13+1;
- data.round++;
- if(a>b)data.wins++;
- $('result').textContent='ورقتك: '+a+' | ورقة الكمبيوتر: '+b+' — '+(a>b?'فزت!':a===b?'تعادل!':'خسرت!');
- $('cardRound').textContent='الجولات: '+data.round+' / 5';
- if(data.round===5)$('result').textContent+=' النتيجة: '+data.wins+' انتصارات';
- };
-}
-
-// Ludo mini race
-function ludo(){
- data.ludo=0;data.cpu=0;
- show('🎲 Ludo Race',`
- <h3 id="ludoPos">أنت: 0 | الكمبيوتر: 0</h3>
- <button onclick="rollLudo()">ارمِ النرد</button>
- <p>أول من يصل إلى 30 يفوز.</p>`);
- window.rollLudo=function(){
- if(data.ludo>=30||data.cpu>=30)return;
- let n=1+Math.floor(Math.random()*6);
- data.ludo=Math.min(30,data.ludo+n);
- let c=1+Math.floor(Math.random()*6);
- data.cpu=Math.min(30,data.cpu+c);
- $('ludoPos').textContent='أنت: '+data.ludo+' | الكمبيوتر: '+data.cpu;
- $('result').textContent='نردك: '+n+' | نرد الكمبيوتر: '+c;
- if(data.ludo===30||data.cpu===30)$('result').textContent=data.ludo===30?'🏆 فزت!':'الكمبيوتر فاز!';
- };
-}
-
-// Bus parking puzzle
-function bus(){
- data.bus=0;
- show('🚌 Bus Parking Out',`
- <p>حرّك الحافلة حتى تصل إلى المخرج.</p>
- <div style="font-size:55px" id="bus">🚌</div>
- <button onclick="moveBus(-1)">⬅️ للخلف</button>
- <button onclick="moveBus(1)">➡️ للأمام</button>
- <p id="busPos">الموقع: 0 / 5</p>
- <button onclick="bus()">إعادة اللعب</button>`);
- window.moveBus=function(n){
- data.bus=Math.max(0,Math.min(5,data.bus+n));
- $('bus').textContent=data.bus===5?'🏁':'🚌';
- $('busPos').textContent='الموقع: '+data.bus+' / 5';
- if(data.bus===5)$('result').textContent='🏆 خرجت الحافلة!';
- };
-}
-
-// Pac-Man mini game
-function pacman(){
- data.pac=12;data.points=0;
- show('👾 PAC-MAN',`
- <p>اجمع النقاط باستخدام الأسهم.</p>
- <div id="pacBoard" style="display:grid;grid-template-columns:repeat(5,45px);gap:4px;justify-content:center"></div>
- <p>النقاط: <span id="pacScore">0</span></p>
- <div>
- <button onclick="movePac(-5)">⬆️</button><br>
- <button onclick="movePac(-1)">⬅️</button>
- <button onclick="movePac(5)">⬇️</button>
- <button onclick="movePac(1)">➡️</button>
- </div>`);
- window.movePac=function(n){
- let next=data.pac+n;
- if(next<0||next>=25)return;
- if(n===1&&data.pac%5===4)return;
- if(n===-1&&data.pac%5===0)return;
- data.pac=next;data.points++;
- $('pacScore').textContent=data.points;
- let board=$('pacBoard');board.innerHTML='';
- for(let i=0;i<25;i++){
- let cell=document.createElement('div');
- cell.className='tile';
- cell.textContent=i===data.pac?'👾':'·';
- board.appendChild(cell);
- }
- if(data.points>=20)$('result').textContent='🏆 رائع! أكملت التحدي!';
- };
- movePac(0);
-}
-
-// Solitaire mini card sorting
-function solitaire(){
- data.sol=[3,1,4,2,5,6,7];
- data.sorted=[];
- show('♠️ Solitaire',`
- <p>رتب الأوراق من الأصغر إلى الأكبر بالضغط عليها.</p>
- <div id="solCards"></div>
- <h3 id="solDone">الأوراق المرتبة: 0 / 7</h3>
- <button onclick="solitaire()">إعادة اللعب</button>`);
- drawSol();
-}
-function drawSol(){
- let el=$('solCards');el.innerHTML='';
- data.sol.forEach((n,i)=>{
- let b=document.createElement('button');
- b.textContent=['','A','2','3','4','5','6','7'][n];
- b.onclick=()=>{
- let expected=data.sorted.length+1;
- if(n!==expected){$('result').textContent='ابدأ بالورقة '+expected;return;}
- data.sorted.push(n);data.sol.splice(i,1);
- $('solDone').textContent='الأوراق المرتبة: '+data.sorted.length+' / 7';
- drawSol();
- if(data.sorted.length===7)$('result').textContent='🏆 فزت!';
- };
- el.appendChild(b);
- });
+function filterGames(){
+let q=document.getElementById("search").value.toLowerCase();
+document.querySelectorAll(".game").forEach(g=>{
+g.style.display=g.innerText.toLowerCase().includes(q)?"block":"none";
+});
 }
 </script>
 </body>
